@@ -12,7 +12,7 @@ class MysqlPipeline(object):
     def __init__(self, crawler):
         self.crawler = crawler
         # self.spider = self.crawler.spider
-        self.tab = 'patent_cnipr_all'
+        self.tab = 'meishij'
         # 如果有其他item和表结构，需要打开这个注释，并更改spider名字和表名
         # if self.spider in ['meng', 'wlglzx']:
         # 	self.tab = 'patent_cnipr_all'
@@ -72,5 +72,5 @@ class MysqlPipeline(object):
             # 	item['comp_full_name']) + '~' + str(item['cursorPage'])
             # self.rc.lpush('cnipr_fail', cnipr_comp)
             print(e)
-            print('mysql error，公司为:{si}，指针为:{zhen}'.format(si=item['comp_full_name'], zhen=item['cursorPage']))
+            print('mysql error，链接为：{}'.format(item['url']))
             self.crawler.engine.close_spider(spider, 'mysql error')
