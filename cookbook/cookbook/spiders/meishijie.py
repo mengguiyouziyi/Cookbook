@@ -14,6 +14,7 @@ import time
 import scrapy
 import json
 from ast import literal_eval
+from scrapy.exceptions import CloseSpider
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector
@@ -68,7 +69,10 @@ class MeishijieSpider(CrawlSpider):
         # zbsj = ''.join(zbsj)
         # prsj = s.xpath('//*[@id="tongji_prsj"]/text()').extract()
         # prsj = ''.join(prsj)
-        pic = re.search(r'"pic" :"(.*?)",', response.text).group(1)
+        pic = re.search(r'"pic" :"(.*?)",', response.text)
+        if not pic:
+            raise CloseSpider('no pic...')
+        pic = pic.group(1)
         n = s.xpath('//*[@id="news_id"]/@value').extract_first()
         category = re.search(r'"category" :(.*),', response.text).group(1)
         category = literal_eval(category)
