@@ -90,19 +90,13 @@ class MeishijieSpider(CrawlSpider):
         kw = re.search(r'"kouwei":"(.*)"', response.text).group(1)
         zbsj = re.search(r'"zbshijian":"(.*)"', response.text).group(1)
         prsj = re.search(r'"prshijian":"(.*)"', response.text).group(1)
-        author = s.xpath('//*[@id="tongji_author"]/text()').extract_first().strip()
+        author = s.xpath('//*[@id="tongji_author"]/text()').extract_first()
         author_url = s.xpath('//*[@id="tongji_author"]/@href').extract_first()
         v_small = s.xpath('//a[@class="v_small"]/@title').extract_first()
         v_small = v_small if v_small else ''
         info = s.xpath('//div[@class="user"]/div[@class="info"]')
         # span = info.xpath('./span/text()').extract_first()
         """菜谱：515　/　关注：24　/　粉丝：12276"""
-        # cp_num = re.findall(r'菜谱：', response.text)
-        # cp_num = cp_num[0] if cp_num else ''
-        # gz_num = re.findall(r'关注：(\d+)', response.text)
-        # gz_num = gz_num[0] if gz_num else ''
-        # fs_num = re.findall(r'粉丝：(\d+)', response.text)
-        # fs_num = fs_num[0] if fs_num else ''
         re_all = re.search(r"菜谱：(\d+)　/　关注：(\d+)　/　粉丝：(\d)", response.text)
         cp_num = re_all.group(1) if re_all else ''
         gz_num = re_all.group(2) if re_all else ''
@@ -140,8 +134,8 @@ class MeishijieSpider(CrawlSpider):
         item['kw'] = kw  # 口味
         item['zbsj'] = zbsj  # 准备时间
         item['prsj'] = prsj  # 烹饪时间
-        item['author'] = author  # 作者
-        item['author_url'] = author_url  # 作者主页url
+        item['author'] = author.strip() if author else '美食杰'  # 作者
+        item['author_url'] = author_url if author_url else '' # 作者主页url
         item['v_small'] = v_small  # 是否大V
         item['cp_num'] = cp_num  # 作者菜谱数
         item['gz_num'] = gz_num  # 作者被关注数
@@ -150,7 +144,7 @@ class MeishijieSpider(CrawlSpider):
         item['jy'] = jy  # 作者寄语
         item['zl'] = json.dumps(zl, ensure_ascii=False)  # 主料
         item['fl'] = json.dumps(fl, ensure_ascii=False)  # 辅料
-        item['prjq'] = prjq  # 烹饪技巧
+        item['prjq'] = prjq if prjq else '' # 烹饪技巧
         click = "http://click.meishij.net/pl/click.php?from_search={f}&classid=1&id={n}&addclick=1&_{t}"
         f = s.xpath('//*[@id="from_search"]/@value').extract_first()
         t = int(time.time() * 1000)
