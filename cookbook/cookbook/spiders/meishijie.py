@@ -92,15 +92,15 @@ class MeishijieSpider(CrawlSpider):
         v_small = s.xpath('//a[@class="v_small"]/@title').extract_first()
         v_small = v_small if v_small else ''
         info = s.xpath('//div[@class="user"]/div[@class="info"]')
-        span = info.xpath('./span/text()').extract_first()
-        print(span)
+        # span = info.xpath('./span/text()').extract_first()
+        # print(span)
         """菜谱：515　/　关注：24　/　粉丝：12276"""
-        cp_num = re.search(r'菜谱：(\d+)', span)
-        print(cp_num)
+        cp_num = re.search(r'菜谱：(\d+)', response.text)
+        # print(cp_num)
         cp_num = cp_num.group(1) if cp_num else ''
-        gz_num = re.search(r'关注：(\d+)', span)
+        gz_num = re.search(r'关注：(\d+)', response.text)
         gz_num = gz_num.group(1) if gz_num else ''
-        fs_num = re.search(r'粉丝：(\d+)', span)
+        fs_num = re.search(r'粉丝：(\d+)', response.text)
         fs_num = fs_num.group(1) if fs_num else ''
         strong = info.xpath('./strong/text()').extract_first()
         date = re.search(r'\d\d\d\d\-\d\d\-\d\d', strong)
