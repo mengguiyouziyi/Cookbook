@@ -42,8 +42,9 @@ class MeishijieSpider(CrawlSpider):
     }
     rules = (
         # Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong'))),
-        Rule(LinkExtractor(allow=()), follow=True),
-        Rule(LinkExtractor(allow=('zuofa\/\w+.html',), deny=('html5')), callback='parse_item', follow=True),
+        Rule(LinkExtractor(allow=(), deny=('dish\.php', '404\.php', 'html5',))),
+        Rule(LinkExtractor(allow=('zuofa\/\w+.html',), deny=('dish\.php', '404\.php', 'html5',)), callback='parse_item',
+             follow=True),
     )
 
     # def __init__(self, *args, **kwargs):
