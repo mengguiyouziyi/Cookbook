@@ -12,7 +12,8 @@ startup_nodes = [{"host": "10.142.97.92", "port": "7000"},
 
 ############################ mysql info ############################
 # etl
-etl_conf = {'host': '10.142.98.91', 'port': 3306, 'user': 'spider', 'password': 'chenguang', 'charset': 'utf8mb4',
+etl_conf = {'host': '10.142.98.91', 'port': 3306, 'user': 'spider', 'password': 'chenguang', 'charset': 'utf8',
             'cursorclass': pymysql.cursors.DictCursor}
 etl = pymysql.connect(**etl_conf)
 etl.select_db('spider')
+print(etl.get_host_info())

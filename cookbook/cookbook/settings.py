@@ -29,6 +29,7 @@ DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # }
 
 # Specify the host and port to use when connecting to Redis (optional).
+# REDIS_HOST = 'localhost'
 REDIS_HOST = '10.142.97.92'
 REDIS_PORT = 6379
 #################################################
@@ -54,7 +55,7 @@ COOKIES_ENABLED = False
 COOKIES_DEBUG = True
 
 # DEBUG INFO WARNING ERROR CRITICAL
-LOG_LEVEL = 'DEBUG'
+LOG_LEVEL = 'INFO'
 
 LOG_STDOUT = True
 
@@ -137,7 +138,7 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-    # 'cookbook.pipelines.MysqlPipeline': 999,
+ITEM_PIPELINES = {
+    'cookbook.pipelines.MysqlPipeline': 999,
     # 'cookbook.pipelines.DuplicatesPipeline': 111,
-# }
+}

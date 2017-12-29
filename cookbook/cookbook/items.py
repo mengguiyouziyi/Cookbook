@@ -14,6 +14,13 @@ class MeishijieItem(scrapy.Item):
     item['url'] = response.url
     item['url'] = title  # 菜谱名称
     item['url'] = f_num  # 收藏人数
+
+    item['pic'] = pic  # 菜谱图片链接
+    item['news_id'] = n  # 菜谱id
+    item['category'] = json.dumps(category, ensure_ascii=False)  # 分类
+    item['pinglun'] = pinglun  # 评论数
+    item['step'] = step  # 步骤数目
+
     item['url'] = gx  # 功效
     item['url'] = gy  # 工艺
     item['url'] = nd  # 难度
@@ -37,6 +44,13 @@ class MeishijieItem(scrapy.Item):
     url = scrapy.Field()
     title = scrapy.Field()
     f_num = scrapy.Field()
+
+    pic = scrapy.Field()
+    news_id = scrapy.Field()
+    category = scrapy.Field()
+    pinglun = scrapy.Field()
+    step = scrapy.Field()
+
     gx = scrapy.Field()
     gy = scrapy.Field()
     nd = scrapy.Field()

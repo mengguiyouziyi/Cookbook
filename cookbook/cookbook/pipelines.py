@@ -4,10 +4,20 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
+import os
+import sys
+from os.path import dirname
 
+father_path = dirname(dirname(os.path.abspath(dirname(__file__))))
+base_path = dirname(dirname(os.path.abspath(dirname(__file__))))
+path = dirname(os.path.abspath(dirname(__file__)))
+sys.path.append(path)
+sys.path.append(base_path)
+sys.path.append(father_path)
+import logging
 from util.info import etl
 
-
+logging.log(logging.DEBUG, msg=str(etl.get_host_info()))
 class MysqlPipeline(object):
     def __init__(self, crawler):
         self.crawler = crawler
