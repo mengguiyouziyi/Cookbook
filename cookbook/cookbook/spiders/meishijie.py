@@ -24,7 +24,7 @@ from cookbook.items import MeishijieItem
 class MeishijieSpider(CrawlSpider):
     name = 'meishij'
     allowed_domains = ['meishij.net', 'meishi.cc']
-    start_urls = ['http://www.meishij.net/']
+    start_urls = ['http://i.meishi.cc/jiajuguan/']
     custom_settings = {
         'DEFAULT_REQUEST_HEADERS': {
             'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
@@ -41,8 +41,9 @@ class MeishijieSpider(CrawlSpider):
         },
     }
     rules = (
-        Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong'))),
-        Rule(LinkExtractor(allow=('zuofa\/\w+.html',)), callback='parse_item', follow=True),
+        # Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong'))),
+        Rule(LinkExtractor(allow=()), follow=True),
+        Rule(LinkExtractor(allow=('zuofa\/\w+.html',), deny=('html5')), callback='parse_item', follow=True),
     )
 
     # def __init__(self, *args, **kwargs):
@@ -135,7 +136,7 @@ class MeishijieSpider(CrawlSpider):
         item['zbsj'] = zbsj  # 准备时间
         item['prsj'] = prsj  # 烹饪时间
         item['author'] = author.strip() if author else '美食杰'  # 作者
-        item['author_url'] = author_url if author_url else '' # 作者主页url
+        item['author_url'] = author_url if author_url else ''  # 作者主页url
         item['v_small'] = v_small  # 是否大V
         item['cp_num'] = cp_num  # 作者菜谱数
         item['gz_num'] = gz_num  # 作者被关注数
@@ -144,7 +145,7 @@ class MeishijieSpider(CrawlSpider):
         item['jy'] = jy  # 作者寄语
         item['zl'] = json.dumps(zl, ensure_ascii=False)  # 主料
         item['fl'] = json.dumps(fl, ensure_ascii=False)  # 辅料
-        item['prjq'] = prjq if prjq else '' # 烹饪技巧
+        item['prjq'] = prjq if prjq else ''  # 烹饪技巧
         click = "http://click.meishij.net/pl/click.php?from_search={f}&classid=1&id={n}&addclick=1&_{t}"
         f = s.xpath('//*[@id="from_search"]/@value').extract_first()
         t = int(time.time() * 1000)
