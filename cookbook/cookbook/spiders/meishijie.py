@@ -12,9 +12,8 @@ sys.path.append(father_path)
 import re
 import time
 import scrapy
-import json, codecs
+import json
 from ast import literal_eval
-from scrapy.exceptions import CloseSpider
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector
@@ -23,8 +22,8 @@ from cookbook.items import MeishijieItem
 
 class MeishijieSpider(CrawlSpider):
     name = 'meishij'
-    allowed_domains = ['meishij.net', 'meishi.cc']
-    start_urls = ['http://i.meishi.cc/daren_task/daren.php']
+    allowed_domains = ['meishij.net']
+    start_urls = ['http://www.meishij.net/']
     custom_settings = {
         'DEFAULT_REQUEST_HEADERS': {
             'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
