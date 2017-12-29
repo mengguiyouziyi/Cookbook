@@ -49,9 +49,9 @@ class MeishijieSpider(CrawlSpider):
     #     super(MeishijieSpider, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
-        with codecs.open('test.html', 'w', 'utf-8') as f:
-            f.write(response.text)
-            exit(1)
+        # with codecs.open('test.html', 'w', 'utf-8') as f:
+        #     f.write(response.text)
+        #     raise CloseSpider('aa')
         if 'error_404' in response.text:
             return
         s = Selector(text=response.text)
@@ -95,7 +95,6 @@ class MeishijieSpider(CrawlSpider):
         v_small = s.xpath('//a[@class="v_small"]/@title').extract_first()
         v_small = v_small if v_small else ''
         info = s.xpath('//div[@class="user"]/div[@class="info"]')
-        print(info.extract())
         # span = info.xpath('./span/text()').extract_first()
         """菜谱：515　/　关注：24　/　粉丝：12276"""
         # cp_num = re.findall(r'菜谱：', response.text)
