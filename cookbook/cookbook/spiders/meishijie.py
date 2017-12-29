@@ -24,7 +24,7 @@ from cookbook.items import MeishijieItem
 class MeishijieSpider(CrawlSpider):
     name = 'meishij'
     allowed_domains = ['meishij.net', 'meishi.cc']
-    start_urls = ['http://i.meishi.cc/jiajuguan/']
+    start_urls = ['http://i.meishi.cc/daren_task/daren.php']
     custom_settings = {
         'DEFAULT_REQUEST_HEADERS': {
             'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
@@ -53,7 +53,7 @@ class MeishijieSpider(CrawlSpider):
         # with codecs.open('test.html', 'w', 'utf-8') as f:
         #     f.write(response.text)
         #     raise CloseSpider('aa')
-        if 'error_404' in response.text:
+        if 'error_404' in response.text or '很抱歉，没有找到与' in response.text:
             return
         s = Selector(text=response.text)
         item = MeishijieItem()
@@ -75,7 +75,9 @@ class MeishijieSpider(CrawlSpider):
         # prsj = ''.join(prsj)
         pic = re.search(r'"pic" :"(.*?)",', response.text)
         if not pic:
-            raise CloseSpider('no pic...')
+            print(response.url + 'no pic...')
+            return
+            # raise CloseSpider('no pic...')
         pic = pic.group(1)
         n = s.xpath('//*[@id="news_id"]/@value').extract_first()
         category = re.search(r'"category" :(.*),', response.text).group(1)
