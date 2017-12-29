@@ -16,4 +16,4 @@ etl_conf = {'host': '10.142.98.91', 'port': 3306, 'user': 'spider', 'password': 
             'cursorclass': pymysql.cursors.DictCursor}
 etl = pymysql.connect(**etl_conf)
 etl.select_db('spider')
-print(etl.get_host_info())
+# print(etl.get_host_info())
