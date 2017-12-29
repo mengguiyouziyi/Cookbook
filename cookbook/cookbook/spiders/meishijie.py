@@ -93,7 +93,6 @@ class MeishijieSpider(CrawlSpider):
         v_small = v_small if v_small else ''
         info = s.xpath('//div[@class="user"]/div[@class="info"]')
         # span = info.xpath('./span/text()').extract_first()
-        # print(span)
         """菜谱：515　/　关注：24　/　粉丝：12276"""
         cp_num = re.findall(r'菜谱：(\d+)', response.text)
         cp_num = cp_num[0] if cp_num else ''
