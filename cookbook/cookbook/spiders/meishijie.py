@@ -91,7 +91,7 @@ class MeishijieSpider(CrawlSpider):
         author_url = s.xpath('//*[@id="tongji_author"]/@href').extract_first()
         v_small = s.xpath('//a[@class="v_small"]/@title').extract_first()
         v_small = v_small if v_small else ''
-        info = s.xpath('//div[@class="info"]')
+        info = s.xpath('//div[@class="user"]/div[@class="info"]')
         span = info.xpath('./span/text()').extract_first()
         cp_num = re.search(r'菜谱：(\d+)', span)
         cp_num = cp_num.group(1) if cp_num else ''
