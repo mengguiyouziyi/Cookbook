@@ -59,7 +59,7 @@ LOG_LEVEL = 'DEBUG'
 
 LOG_STDOUT = True
 
-REDIRECT_ENABLED = False
+# REDIRECT_ENABLED = False
 
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
