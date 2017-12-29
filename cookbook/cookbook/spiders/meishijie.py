@@ -12,7 +12,7 @@ sys.path.append(father_path)
 import re
 import time
 import scrapy
-import json
+import json, codecs
 from ast import literal_eval
 from scrapy.exceptions import CloseSpider
 from scrapy.spiders import CrawlSpider, Rule
@@ -49,6 +49,9 @@ class MeishijieSpider(CrawlSpider):
     #     super(MeishijieSpider, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
+        with codecs.open('test.html', 'w', 'utf-8') as f:
+            f.write(response.text)
+            exit(1)
         if 'error_404' in response.text:
             return
         s = Selector(text=response.text)
