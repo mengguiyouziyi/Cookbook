@@ -64,18 +64,6 @@ LOG_STDOUT = True
 # Disable Telnet Console (enabled by default)
 # TELNETCONSOLE_ENABLED = False
 
-# Override the default request headers:
-# DEFAULT_REQUEST_HEADERS = {
-# 	'upgrade-insecure-requests': "1",
-# 	# 'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
-# 	'accept': "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8",
-# 	'referer': "http://search.114chn.com/searchresult.aspx?type=1&areaid=31&pattern=2&page=100",
-# 	'accept-encoding': "gzip, deflate",
-# 	'accept-language': "zh-CN,zh;q=0.8",
-# 	# 'cookie': "bdshare_firstime=1509612560767; UM_distinctid=15f7bed65c32e0-01af79ead3a85f-31637e01-13c680-15f7bed65c4735; Hm_lvt_40b8d9bb56b7b9b3fee170b6b9b4bc8e=1509612561; Hm_lpvt_40b8d9bb56b7b9b3fee170b6b9b4bc8e=1509613182; CNZZDATA30067493=cnzz_eid%3D1102648662-1510104203-http%253A%252F%252Fsearch.114chn.com%252F%26ntime%3D1510104203",
-# 	'cache-control': "no-cache",
-# 	'postman-token': "b710e80f-5152-1b73-ed8c-b5342bd0c5a9"
-# }
 
 USER_AGENT_CHOICES = [
     'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0_3 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Mobile/15A432',

@@ -36,22 +36,22 @@ class MeishijieSpider(CrawlSpider):
             'referer': "http://www.meishij.net/jiankang/yangsheng/",
             'upgrade-insecure-requests': "1",
             # 'user-agent': "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36",
-            'postman-token': "cb89c719-651e-7a84-dddc-1ecc127ab3a6"
+            # 'postman-token': "cb89c719-651e-7a84-dddc-1ecc127ab3a6"
         },
     }
     rules = (
-        # Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong'))),
-        # Rule(LinkExtractor(allow=(), deny=('dish', '404', 'html5', 'list', 'php'))),
-        Rule(LinkExtractor(allow=())),
-        Rule(LinkExtractor(allow=('/zuofa/\w+\.html$', '/\d+\.html$')), callback='parse_item',
-             follow=True),
+        Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong'),
+                           deny=('dish', '404', 'html5', 'list', 'php'))),
+        # Rule(LinkExtractor(allow=('.*'), deny=('dish', '404', 'html5', 'list', 'php'))),
+        # Rule(LinkExtractor(allow=())),
+        Rule(LinkExtractor(allow=('/zuofa/\w+\.html$', '/\d+\.html$')), callback='parse_item'),
+        # Rule(LinkExtractor(allow=('/zuofa/\w+\.html$')), callback='parse_item'),
     )
 
     # def __init__(self, *args, **kwargs):
     #     super(MeishijieSpider, self).__init__(*args, **kwargs)
 
     def parse_item(self, response):
-        print(response.url)
         # with codecs.open('test.html', 'w', 'utf-8') as f:
         #     f.write(response.text)
         #     raise CloseSpider('aa')
@@ -155,10 +155,8 @@ class MeishijieSpider(CrawlSpider):
         t = int(time.time() * 1000)
         c_url = click.format(n=n, f=f, t=t)
         yield scrapy.Request(c_url, meta={'item': item}, callback=self.parse_click)
-        print(c_url)
 
     def parse_click(self, response):
-        print(response.url)
         viewclicknum = re.search(r"\('viewclicknum'\)\.innerHTML=(\d+);", response.text)
         viewclicknum = viewclicknum.group(1) if viewclicknum else ''
         f_num = re.search(r"\('f_num'\)\.innerHTML='\((\d+)\)';", response.text)
@@ -166,5 +164,4 @@ class MeishijieSpider(CrawlSpider):
         item = response.meta.get('item', {})
         item['f_num'] = f_num  # 收藏人数
         item['viewclicknum'] = viewclicknum  # 菜谱浏览量
-        print(item)
         yield item
