@@ -40,11 +40,11 @@ class MeishijieSpider(CrawlSpider):
         },
     }
     rules = (
-        Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong'),
+        Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong', 'meishij\.net\/[\u4e00-\u9fa5]+$'),
                            deny=('dish', '404', 'html5', 'list', 'php'))),
         # Rule(LinkExtractor(allow=('.*'), deny=('dish', '404', 'html5', 'list', 'php'))),
         # Rule(LinkExtractor(allow=())),
-        Rule(LinkExtractor(allow=('/zuofa/\w+\.html$', '/\d+\.html$')), callback='parse_item'),
+        Rule(LinkExtractor(allow=('/zuofa/\w+\.html$', '/\d+\.html$')), callback='parse_item', follow=True),
         # Rule(LinkExtractor(allow=('/zuofa/\w+\.html$')), callback='parse_item'),
     )
 
