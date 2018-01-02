@@ -162,6 +162,6 @@ class MeishijieSpider(CrawlSpider):
         item = response.meta.get('item', {})
         item['f_num'] = f_num  # 收藏人数
         item['viewclicknum'] = viewclicknum  # 菜谱浏览量
-        # print(item)
+        print(item)
         yield item
 

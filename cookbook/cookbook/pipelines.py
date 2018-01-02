@@ -71,7 +71,7 @@ class MysqlPipeline(object):
         return x
 
     def process_item(self, item, spider):
-        print(item)
+        # print(item)
         sql = """insert into {tab} ({col}) VALUES ({val})""".format(tab=self.tab, col=self.col_str, val=self.val_str)
         args = [item[i] for i in self.col_list]
         try:
