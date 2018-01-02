@@ -32,7 +32,7 @@ DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # REDIS_HOST = 'localhost'
 REDIS_HOST = '10.142.97.92'
 REDIS_PORT = 6379
-#################################################
+################################################
 #################################################
 
 
