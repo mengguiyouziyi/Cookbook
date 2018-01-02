@@ -42,7 +42,7 @@ class MeishijieSpider(CrawlSpider):
     rules = (
         # Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong'))),
         Rule(LinkExtractor(allow=(), deny=('dish\.php', '404\.php', 'html5', 'list', 'php'))),
-        Rule(LinkExtractor(allow=('zuofa/\w+\.html$', '/\d+\.html')), callback='parse_item',
+        Rule(LinkExtractor(allow=('zuofa/\w+\.html$', '/\d+\.html$')), callback='parse_item',
              follow=True),
     )
 
@@ -164,3 +164,4 @@ class MeishijieSpider(CrawlSpider):
         item['viewclicknum'] = viewclicknum  # 菜谱浏览量
         # print(item)
         yield item
+
