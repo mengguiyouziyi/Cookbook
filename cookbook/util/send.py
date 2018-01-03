@@ -14,7 +14,7 @@ class Send(object):
         self.cursor.execute(sql)
         results = self.cursor.fetchall()
         for i, result in enumerate(results):
-            while (i+1) % 1000 == 0:
+            if (i + 1) % 1000 == 0:
                 print(i)
             url = result.get('url', '')
             if not url:
