@@ -13,7 +13,9 @@ class Send(object):
         sql = """select url from meishij"""
         self.cursor.execute(sql)
         results = self.cursor.fetchall()
-        for result in results:
+        for i, result in enumerate(results):
+            while i % 1000 == 0:
+                print(i)
             url = result.get('url', '')
             if not url:
                 continue
