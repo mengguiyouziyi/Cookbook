@@ -1,5 +1,5 @@
 import redis
-from cookbook.util.info import etl
+from .info import etl
 
 
 class Send(object):
