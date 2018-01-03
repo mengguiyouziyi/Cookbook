@@ -22,7 +22,7 @@ from cookbook.items import MeishijieItem
 
 class MeishijieSpider(CrawlSpider):
     name = 'meishij'
-    allowed_domains = ['meishij.net']
+    allowed_domains = ['meishij.net', 'meishij.cc']
     start_urls = ['http://www.meishij.net/']
     custom_settings = {
         'DEFAULT_REQUEST_HEADERS': {
@@ -40,7 +40,7 @@ class MeishijieSpider(CrawlSpider):
         },
     }
     rules = (
-        Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong', 'meishij\.net\/[\u4e00-\u9fa5]+$'),
+        Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong', '\/[\u4e00-\u9fa5]+$'),
                            deny=('dish', '404', 'html5', 'list', 'php'))),
         # Rule(LinkExtractor(allow=('.*'), deny=('dish', '404', 'html5', 'list', 'php'))),
         # Rule(LinkExtractor(allow=())),
