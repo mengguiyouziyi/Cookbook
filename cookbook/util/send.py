@@ -1,5 +1,5 @@
 import redis
-from .info import etl
+from info import etl
 
 
 class Send(object):
