@@ -98,7 +98,7 @@ class RFPDupeFilter(BaseDupeFilter):
         # fp = self.request_fingerprint(request.url)  # change request ->request.url
         # This returns the number of values added, zero if already exists.
         added = self.server.sadd(self.key, request.url)
-        print(request.url)
+        print('request.url ', request.url)
         return added == 0
 
     def request_fingerprint(self, request):
