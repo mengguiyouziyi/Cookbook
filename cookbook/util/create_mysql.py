@@ -34,6 +34,8 @@ class CreateTable(object):
           `f_num` varchar(100) DEFAULT '' COMMENT '收藏人数',
           `pic` varchar(300) DEFAULT '' COMMENT '菜谱图片链接',
           `category` longtext COMMENT '相关分类',
+          `zf` varchar(100) DEFAULT '' COMMENT '做法',
+          `kw` varchar(100) DEFAULT '' COMMENT '口味',
           `nd` varchar(100) DEFAULT '' COMMENT '难度',
           `xgsc` longtext COMMENT '相关食材',
           `xgzf` longtext COMMENT '相关做法',

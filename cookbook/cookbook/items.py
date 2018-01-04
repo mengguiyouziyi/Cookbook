@@ -61,6 +61,8 @@ class SbarItem(scrapy.Item):
     f_num = scrapy.Field()
     pic = scrapy.Field()
     category = scrapy.Field()
+    zf = scrapy.Field()
+    kw = scrapy.Field()
     nd = scrapy.Field()
     xgsc = scrapy.Field()
     xgzf = scrapy.Field()

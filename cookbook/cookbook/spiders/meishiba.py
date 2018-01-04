@@ -47,7 +47,15 @@ class MeishijieSpider(CrawlSpider):
         pic = s.xpath('//img[@class="title_photo"]/@src').extract_first()
         title = s.xpath('//h1[@class="title"]/@title').extract_first()
         f_num = s.xpath('//div[starts-with(@id, "show_fav_count")]/text()').extract_first()
-        nd = s.xpath('//li[@class="hr_r"]/a/text()').extract_first()  # 难度
+        span = s.xpath('//li[@class="hr_r"][1]/span/text()').extract_first()
+        if isinstance(span, str) and '做法：' in span:
+            zf = s.xpath('//li[@class="hr_r"][1]/a/text()').extract_first()  # 做法
+            kw = s.xpath('//li[@class="hr_r"][2]/a/text()').extract_first()  # 口味
+            nd = s.xpath('//li[@class="hr_r"][3]/a/text()').extract_first()  # 难度
+        else:
+            zf = ''  # 做法
+            kw = ''  # 口味
+            nd = s.xpath('//li[@class="hr_r"]/a/text()').extract_first()  # 难度
         xgsc = s.xpath('//li[@class="shicai_list_li"]/a/@href').extract()  # 相关食材
         h3 = s.xpath('//div[@class="info_label"]/h3[@class="shicai_title"]/text()').extract()
         if '相关分类：' in h3:
@@ -73,6 +81,8 @@ class MeishijieSpider(CrawlSpider):
         item['f_num'] = f_num if f_num else ''
         item['pic'] = pic if pic else ''
         item['category'] = json.dumps(category, ensure_ascii=False)
+        item['zf'] = zf if zf else ''
+        item['kw'] = kw if kw else ''
         item['nd'] = nd if nd else ''
         item['xgsc'] = json.dumps(xgsc, ensure_ascii=False)
         item['xgzf'] = json.dumps(xgzf, ensure_ascii=False)
