@@ -9,38 +9,6 @@ import scrapy
 
 
 class MeishijieItem(scrapy.Item):
-    # define the fields for your item here like:
-    """
-    item['url'] = response.url
-    item['url'] = title  # 菜谱名称
-    item['url'] = f_num  # 收藏人数
-
-    item['pic'] = pic  # 菜谱图片链接
-    item['news_id'] = n  # 菜谱id
-    item['category'] = json.dumps(category, ensure_ascii=False)  # 分类
-    item['pinglun'] = pinglun  # 评论数
-    item['step'] = step  # 步骤数目
-
-    item['url'] = gx  # 功效
-    item['url'] = gy  # 工艺
-    item['url'] = nd  # 难度
-    item['url'] = rsh  # 人数
-    item['url'] = kw  # 口味
-    item['url'] = zbsj  # 准备时间
-    item['url'] = prsj  # 烹饪时间
-    item['url'] = author  # 作者
-    item['url'] = author_url  # 作者主页url
-    item['url'] = v_small  # 是否大V
-    item['url'] = cp_num  # 作者菜谱数
-    item['url'] = gz_num  # 作者被关注数
-    item['url'] = fs_num  # 作者粉丝数
-    item['url'] = date  # 菜谱上传时间
-    item['url'] = viewclicknum  # 菜谱浏览量
-    item['url'] = jy  # 作者寄语
-    item['url'] = zl  # 主料
-    item['url'] = fl  # 辅料
-    item['url'] = prjq  # 烹饪技巧
-    """
     url = scrapy.Field()
     title = scrapy.Field()
     f_num = scrapy.Field()
@@ -71,3 +39,33 @@ class MeishijieItem(scrapy.Item):
     fl = scrapy.Field()
     prjq = scrapy.Field()
 
+
+class SbarItem(scrapy.Item):
+    """
+    item['url'] = response.url
+        item['title'] = title if title else ''
+        item['f_num'] = f_num if f_num else ''
+        item['pic'] = pic if pic else ''
+        item['category'] = json.dumps(category, ensure_ascii=False)
+        item['nd'] = nd if nd else ''
+        item['xgsc'] = json.dumps(xgsc, ensure_ascii=False)
+        item['xgzf'] = json.dumps(xgzf, ensure_ascii=False)
+        item['original'] = original if original else ''
+        item['date'] = date if date else ''
+        item['see_num'] = see_num if see_num else ''
+        item['zl'] = json.dumps(zl, ensure_ascii=False)
+        item['fl'] = json.dumps(fl, ensure_ascii=False)
+    """
+    url = scrapy.Field()
+    title = scrapy.Field()
+    f_num = scrapy.Field()
+    pic = scrapy.Field()
+    category = scrapy.Field()
+    nd = scrapy.Field()
+    xgsc = scrapy.Field()
+    xgzf = scrapy.Field()
+    original = scrapy.Field()
+    date = scrapy.Field()
+    viewclicknum = scrapy.Field()
+    zl = scrapy.Field()
+    fl = scrapy.Field()

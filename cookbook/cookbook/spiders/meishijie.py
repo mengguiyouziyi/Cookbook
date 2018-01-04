@@ -38,6 +38,7 @@ class MeishijieSpider(CrawlSpider):
             # 'user-agent': "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36",
             # 'postman-token': "cb89c719-651e-7a84-dddc-1ecc127ab3a6"
         },
+        'DOWNLOAD_DELAY': 1
     }
     rules = (
         Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong', '\/[\u4e00-\u9fa5]+$'),

@@ -18,15 +18,19 @@ import logging
 from util.info import etl
 
 logging.log(logging.DEBUG, msg=str(etl.get_host_info()))
+
+
 class MysqlPipeline(object):
     def __init__(self, crawler):
         self.crawler = crawler
-        # self.spider = self.crawler.spider
-        self.tab = 'meishij'
+        self.spider = self.crawler.spider
         # 如果有其他item和表结构，需要打开这个注释，并更改spider名字和表名
-        # if self.spider in ['meng', 'wlglzx']:
-        # 	self.tab = 'patent_cnipr_all'
-
+        if self.spider.name == 'meishij':
+            self.tab = 'meishij'
+        elif self.spider.name == 'sbar':
+            self.tab = 'sbar'
+        else:
+            self.tab = 'test'
         # self.rc = StrictRedisCluster(startup_nodes=startup_nodes, decode_responses=True)
         self.conn = etl
         self.cursor = self.conn.cursor()
@@ -46,7 +50,7 @@ class MysqlPipeline(object):
         :return:
         """
         sql = """select group_concat(column_name) from information_schema.columns WHERE table_name = '{tab}' and table_schema = 'spider'""".format(
-            tab=tab)
+            tab=self.tab)
         try:
             self.cursor.execute(sql)
         except Exception as e:
