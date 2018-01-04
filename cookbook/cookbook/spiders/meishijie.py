@@ -41,8 +41,12 @@ class MeishijieSpider(CrawlSpider):
         'DOWNLOAD_DELAY': 1
     }
     rules = (
-        Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong', '\/[\u4e00-\u9fa5]+$'),
-                           deny=('dish', '404', 'html5', 'list', 'php'))),
+        Rule(LinkExtractor(allow=(
+            'chufang', 'list\.php', 'china\-food', 'hongpei', 'shicai', 'jiankang', 'yaoshanshiliao', 'yunfu', 'cook',
+            'recipe\_list', 'huodong', '[\u4e00-\u9fa5]+$'),
+            deny=('dish', '404', 'html5', 'pengren'))),
+        # Rule(LinkExtractor(allow=('\/chufang\/diy\/', 'recipe\_list', 'huodong', '\/[\u4e00-\u9fa5]+$'),
+        #                    deny=('dish', '404', 'html5', 'list', 'php'))),
         # Rule(LinkExtractor(allow=('.*'), deny=('dish', '404', 'html5', 'list', 'php'))),
         # Rule(LinkExtractor(allow=())),
         Rule(LinkExtractor(allow=('/zuofa/\w+\.html$', '/\d+\.html$')), callback='parse_item', follow=True),
