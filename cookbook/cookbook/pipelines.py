@@ -79,7 +79,6 @@ class MysqlPipeline(object):
     def process_item(self, item, spider):
         # print(item)
         sql = """insert into {tab} ({col}) VALUES ({val})""".format(tab=self.tab, col=self.col_str, val=self.val_str)
-        print(sql)
         args = [item[i] for i in self.col_list]
         try:
             self.cursor.execute(sql, args)
