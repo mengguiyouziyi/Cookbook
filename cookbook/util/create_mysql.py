@@ -14,35 +14,46 @@ class CreateTable(object):
         """
         item['url'] = response.url
         item['title'] = title
-        item['sub_title'] = sub_title
+        item['star_num'] = str(star_num)
+        item['made_it'] = made_it
+        item['review_count'] = str(review_count)
+        item['picture_count'] = str(picture_count)
+        item['author'] = author
+        item['descriptions'] = descriptions
+        item['pics'] = json.dumps(pics, ensure_ascii=False)
         item['time'] = time
         item['servings'] = servings
         item['nutrition'] = nutrition
-        item['description'] = description
-        item['like'] = like if like else ''
-        item['save'] = save if save else ''
-        item['ingredients'] = ingredients
-        item['tools'] = tools
+        item['ingredients'] = json.dumps(ingredients, ensure_ascii=False)
+        item['pretime'] = pretime
+        item['cooktime'] = cooktime
+        item['totaltime'] = totaltime
+        item['directions'] = json.dumps(directions, ensure_ascii=False)
         """
         sql = """
 		CREATE TABLE IF NOT EXISTS `{}` (
           `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
           `url` varchar(500) DEFAULT '' COMMENT '网页url',
           `title` varchar(500) DEFAULT '' COMMENT '菜谱名称',
-          `sub_title` varchar(500) DEFAULT '' COMMENT '副标题',
+          `made_it` varchar(100) DEFAULT '' COMMENT '制作数',
+          `review_count` varchar(100) DEFAULT '' COMMENT '浏览数',
+          `picture_count` varchar(100) DEFAULT '' COMMENT '照片数',
+          `author` varchar(100) DEFAULT '' COMMENT '作者',
+          `descriptions` longtext COMMENT '描述',
+          `pics` longtext COMMENT '照片列表',
           `time` varchar(100) DEFAULT '' COMMENT '烹饪时长',
           `servings` varchar(300) DEFAULT '' COMMENT '用餐人数',
           `nutrition` varchar(100) DEFAULT '' COMMENT '卡里路量',
-          `description` longtext COMMENT '描述',
-          `like` varchar(100) DEFAULT '' COMMENT 'facebook点赞数',
-          `save` varchar(100) DEFAULT '' COMMENT 'pinterest收藏数',
           `ingredients` longtext COMMENT '配料',
-          `tools` longtext COMMENT '工具',
+          `pretime` varchar(100) DEFAULT '' COMMENT '准备时长',
+          `cooktime` varchar(100) DEFAULT '' COMMENT '烹饪时长',
+          `totaltime` varchar(100) DEFAULT '' COMMENT '总时长',
+          `directions` longtext COMMENT '指南',
           `load_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '落地时间',
           PRIMARY KEY (`id`),
           KEY `index_title` (`title`),
           KEY `index_url` (`url`)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='blueapron菜谱大全';
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='allrecipes菜谱大全';
 		""".format(self.t_name)
         self.cur.execute(sql)
         self.conn.commit()
@@ -58,5 +69,5 @@ class CreateTable(object):
 if __name__ == '__main__':
     # print(etl.get_host_info())
     # print(etl.get_proto_info())
-    ct = CreateTable('blueapron')
+    ct = CreateTable('allrecipes')
     ct.create()

@@ -12,13 +12,11 @@ class MeishijieItem(scrapy.Item):
     url = scrapy.Field()
     title = scrapy.Field()
     f_num = scrapy.Field()
-
     pic = scrapy.Field()
     news_id = scrapy.Field()
     category = scrapy.Field()
     pinglun = scrapy.Field()
     step = scrapy.Field()
-
     gx = scrapy.Field()
     gy = scrapy.Field()
     nd = scrapy.Field()
@@ -41,21 +39,6 @@ class MeishijieItem(scrapy.Item):
 
 
 class SbarItem(scrapy.Item):
-    """
-    item['url'] = response.url
-        item['title'] = title if title else ''
-        item['f_num'] = f_num if f_num else ''
-        item['pic'] = pic if pic else ''
-        item['category'] = json.dumps(category, ensure_ascii=False)
-        item['nd'] = nd if nd else ''
-        item['xgsc'] = json.dumps(xgsc, ensure_ascii=False)
-        item['xgzf'] = json.dumps(xgzf, ensure_ascii=False)
-        item['original'] = original if original else ''
-        item['date'] = date if date else ''
-        item['see_num'] = see_num if see_num else ''
-        item['zl'] = json.dumps(zl, ensure_ascii=False)
-        item['fl'] = json.dumps(fl, ensure_ascii=False)
-    """
     url = scrapy.Field()
     title = scrapy.Field()
     f_num = scrapy.Field()
@@ -74,16 +57,6 @@ class SbarItem(scrapy.Item):
 
 
 class BlueapronItem(scrapy.Item):
-    """
-    item['title'] = title
-        item['sub_title'] = sub_title
-        item['time'] = time
-        item['servings'] = servings
-        item['nutrition'] = nutrition
-        item['description'] = description
-        item['ingredients'] = ingredients
-        item['tools'] = tools
-    """
     url = scrapy.Field()
     title = scrapy.Field()
     sub_title = scrapy.Field()
@@ -95,3 +68,42 @@ class BlueapronItem(scrapy.Item):
     save = scrapy.Field()
     ingredients = scrapy.Field()
     tools = scrapy.Field()
+
+
+class Allrecipes(scrapy.Item):
+    """
+    item['url'] = response.url
+    item['title'] = title
+    item['star_num'] = str(star_num)
+    item['made_it'] = made_it
+    item['review_count'] = str(review_count)
+    item['picture_count'] = str(picture_count)
+    item['author'] = author
+    item['descriptions'] = descriptions
+    item['pics'] = json.dumps(pics, ensure_ascii=False)
+    item['time'] = time
+    item['servings'] = servings
+    item['nutrition'] = nutrition
+    item['ingredients'] = json.dumps(ingredients, ensure_ascii=False)
+    item['pretime'] = pretime
+    item['cooktime'] = cooktime
+    item['totaltime'] = totaltime
+    item['directions'] = json.dumps(directions, ensure_ascii=False)
+    """
+    url = scrapy.Field()
+    title = scrapy.Field()
+    star_num = scrapy.Field()
+    made_it = scrapy.Field()
+    review_count = scrapy.Field()
+    picture_count = scrapy.Field()
+    author = scrapy.Field()
+    descriptions = scrapy.Field()
+    pics = scrapy.Field()
+    time = scrapy.Field()
+    servings = scrapy.Field()
+    nutrition = scrapy.Field()
+    ingredients = scrapy.Field()
+    pretime = scrapy.Field()
+    cooktime = scrapy.Field()
+    totaltime = scrapy.Field()
+    directions = scrapy.Field()
