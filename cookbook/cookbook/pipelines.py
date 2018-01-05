@@ -29,6 +29,8 @@ class MysqlPipeline(object):
             self.tab = 'meishij'
         elif self.spider.name == 'sbar':
             self.tab = 'sbar'
+        elif self.spider.name == 'blueapron':
+            self.tab = 'blueapron'
         else:
             self.tab = 'test'
         # self.rc = StrictRedisCluster(startup_nodes=startup_nodes, decode_responses=True)
@@ -77,6 +79,7 @@ class MysqlPipeline(object):
     def process_item(self, item, spider):
         # print(item)
         sql = """insert into {tab} ({col}) VALUES ({val})""".format(tab=self.tab, col=self.col_str, val=self.val_str)
+        print(sql)
         args = [item[i] for i in self.col_list]
         try:
             self.cursor.execute(sql, args)

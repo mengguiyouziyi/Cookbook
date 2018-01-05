@@ -71,3 +71,27 @@ class SbarItem(scrapy.Item):
     viewclicknum = scrapy.Field()
     zl = scrapy.Field()
     fl = scrapy.Field()
+
+
+class BlueapronItem(scrapy.Item):
+    """
+    item['title'] = title
+        item['sub_title'] = sub_title
+        item['time'] = time
+        item['servings'] = servings
+        item['nutrition'] = nutrition
+        item['description'] = description
+        item['ingredients'] = ingredients
+        item['tools'] = tools
+    """
+    url = scrapy.Field()
+    title = scrapy.Field()
+    sub_title = scrapy.Field()
+    time = scrapy.Field()
+    servings = scrapy.Field()
+    nutrition = scrapy.Field()
+    descriptions = scrapy.Field()
+    likes = scrapy.Field()
+    save = scrapy.Field()
+    ingredients = scrapy.Field()
+    tools = scrapy.Field()
