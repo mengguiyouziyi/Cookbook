@@ -70,26 +70,7 @@ class BlueapronItem(scrapy.Item):
     tools = scrapy.Field()
 
 
-class Allrecipes(scrapy.Item):
-    """
-    item['url'] = response.url
-    item['title'] = title
-    item['star_num'] = str(star_num)
-    item['made_it'] = made_it
-    item['review_count'] = str(review_count)
-    item['picture_count'] = str(picture_count)
-    item['author'] = author
-    item['descriptions'] = descriptions
-    item['pics'] = json.dumps(pics, ensure_ascii=False)
-    item['time'] = time
-    item['servings'] = servings
-    item['nutrition'] = nutrition
-    item['ingredients'] = json.dumps(ingredients, ensure_ascii=False)
-    item['pretime'] = pretime
-    item['cooktime'] = cooktime
-    item['totaltime'] = totaltime
-    item['directions'] = json.dumps(directions, ensure_ascii=False)
-    """
+class AllrecipesItem(scrapy.Item):
     url = scrapy.Field()
     title = scrapy.Field()
     star_num = scrapy.Field()
@@ -107,3 +88,20 @@ class Allrecipes(scrapy.Item):
     cooktime = scrapy.Field()
     totaltime = scrapy.Field()
     directions = scrapy.Field()
+
+
+class EatingwellItem(scrapy.Item):
+    url = scrapy.Field()
+    pic = scrapy.Field()
+    title = scrapy.Field()
+    rate = scrapy.Field()
+    review = scrapy.Field()
+    submitter = scrapy.Field()
+    submitterLogo = scrapy.Field()
+    submitterTitle = scrapy.Field()
+    submitterRole = scrapy.Field()
+    nutrition_profile = scrapy.Field()
+    ingredients = scrapy.Field()
+    active = scrapy.Field()
+    totalTime = scrapy.Field()
+    step = scrapy.Field()

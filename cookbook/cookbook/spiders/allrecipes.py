@@ -15,7 +15,7 @@ import re
 from urllib.parse import urljoin
 from scrapy.spiders import CrawlSpider
 from scrapy.selector import Selector
-from cookbook.items import Allrecipes
+from cookbook.items import AllrecipesItem
 
 
 class MeishijieSpider(CrawlSpider):
@@ -77,7 +77,7 @@ class MeishijieSpider(CrawlSpider):
         totaltime = s.xpath('//time[@itemprop="totalTime"]/span/text()').extract_first()
         directions = s.xpath('//span[@class="recipe-directions__list--item"]/text()').extract()
 
-        item = Allrecipes()
+        item = AllrecipesItem()
         item['url'] = response.url
         item['title'] = title
         item['star_num'] = str(star_num)

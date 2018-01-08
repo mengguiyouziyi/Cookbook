@@ -12,43 +12,38 @@ class CreateTable(object):
 
     def create(self):
         """
-        item['url'] = response.url
-        item['title'] = title
-        item['star_num'] = str(star_num)
-        item['made_it'] = made_it
-        item['review_count'] = str(review_count)
-        item['picture_count'] = str(picture_count)
-        item['author'] = author
-        item['descriptions'] = descriptions
-        item['pics'] = json.dumps(pics, ensure_ascii=False)
-        item['time'] = time
-        item['servings'] = servings
-        item['nutrition'] = nutrition
-        item['ingredients'] = json.dumps(ingredients, ensure_ascii=False)
-        item['pretime'] = pretime
-        item['cooktime'] = cooktime
-        item['totaltime'] = totaltime
-        item['directions'] = json.dumps(directions, ensure_ascii=False)
+            url = scrapy.Field()
+            pic = scrapy.Field()
+            title = scrapy.Field()
+            rate = scrapy.Field()
+            review = scrapy.Field()
+            submitter = scrapy.Field()
+            submitterLogo = scrapy.Field()
+            submitterTitle = scrapy.Field()
+            submitterRole = scrapy.Field()
+            nutrition_profile = scrapy.Field()
+            ingredients = scrapy.Field()
+            active = scrapy.Field()
+            totalTime = scrapy.Field()
+            step = scrapy.Field()
         """
         sql = """
 		CREATE TABLE IF NOT EXISTS `{}` (
           `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增id',
           `url` varchar(500) DEFAULT '' COMMENT '网页url',
+          `pic` varchar(500) DEFAULT '' COMMENT '菜谱图片',
           `title` varchar(500) DEFAULT '' COMMENT '菜谱名称',
-          `made_it` varchar(100) DEFAULT '' COMMENT '制作数',
-          `review_count` varchar(100) DEFAULT '' COMMENT '浏览数',
-          `picture_count` varchar(100) DEFAULT '' COMMENT '照片数',
-          `author` varchar(100) DEFAULT '' COMMENT '作者',
-          `descriptions` longtext COMMENT '描述',
-          `pics` longtext COMMENT '照片列表',
-          `time` varchar(100) DEFAULT '' COMMENT '烹饪时长',
-          `servings` varchar(300) DEFAULT '' COMMENT '用餐人数',
-          `nutrition` varchar(100) DEFAULT '' COMMENT '卡里路量',
+          `rate` varchar(500) DEFAULT '' COMMENT '评分',
+          `review` varchar(500) DEFAULT '' COMMENT '评论数',
+          `submitter` varchar(500) DEFAULT '' COMMENT '贡献者',
+          `submitterLogo` varchar(500) DEFAULT '' COMMENT '贡献者照片',
+          `submitterTitle` varchar(500) DEFAULT '' COMMENT '贡献者名字',
+          `submitterRole` varchar(500) DEFAULT '' COMMENT '贡献者角色',
+          `nutrition_profile` varchar(500) DEFAULT '' COMMENT '营养特点',
           `ingredients` longtext COMMENT '配料',
-          `pretime` varchar(100) DEFAULT '' COMMENT '准备时长',
-          `cooktime` varchar(100) DEFAULT '' COMMENT '烹饪时长',
-          `totaltime` varchar(100) DEFAULT '' COMMENT '总时长',
-          `directions` longtext COMMENT '指南',
+          `active` varchar(500) DEFAULT '' COMMENT '烹饪时间',
+          `totalTime` varchar(500) DEFAULT '' COMMENT '总时间',
+          `step` longtext COMMENT '步骤',
           `load_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '落地时间',
           PRIMARY KEY (`id`),
           KEY `index_title` (`title`),
@@ -69,5 +64,5 @@ class CreateTable(object):
 if __name__ == '__main__':
     # print(etl.get_host_info())
     # print(etl.get_proto_info())
-    ct = CreateTable('allrecipes')
+    ct = CreateTable('eatingwell')
     ct.create()
