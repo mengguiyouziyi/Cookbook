@@ -57,8 +57,6 @@ class MeishijieSpider(CrawlSpider):
         author = s.xpath('//span[@itemprop="name"]/text()').extract_first()
         ing_tags = s.xpath('//div[@class="ingredient__details"]')
         ingredients = [''.join([t.strip() for t in tag.xpath('.//text()').extract() if t]) for tag in ing_tags if tag] if ing_tags else []
-        # ingredients = s.xpath('//div[@class="ingredient__details"]//text()').extract()
-        # ingredients = [ing.strip() for ing in ingredients if ing] if ingredients else []
         servings = s.xpath('//div[starts-with(@id, "serving_recipe")]/div/text()').extract_first()
         cook_time = s.xpath('//div[starts-with(@id, "cooking_time_recipe")]/div/text()').extract_first()
         instructions = s.xpath('//div[@itemprop="recipeInstructions"]/p/text()').extract()
