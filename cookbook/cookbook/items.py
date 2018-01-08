@@ -105,3 +105,32 @@ class EatingwellItem(scrapy.Item):
     active = scrapy.Field()
     totalTime = scrapy.Field()
     step = scrapy.Field()
+
+
+class CookpadItem(scrapy.Item):
+    """
+        item['url'] = response.url
+        item['title'] = title
+        item['pic'] = pic
+        item['likes'] = likes
+        item['camera'] = camera
+        item['desc'] = desc
+        item['author_url'] = author_url
+        item['author'] = author
+        item['ingredients'] = json.dumps(Ingredients, ensure_ascii=False)
+        item['servings'] = servings
+        item['cook_time'] = cook_time
+        item['instructions'] = json.dumps(instructions, ensure_ascii=False)
+    """
+    url = scrapy.Field()
+    title = scrapy.Field()
+    pic = scrapy.Field()
+    likes = scrapy.Field()
+    camera = scrapy.Field()
+    description = scrapy.Field()
+    author_url = scrapy.Field()
+    author = scrapy.Field()
+    ingredients = scrapy.Field()
+    servings = scrapy.Field()
+    cook_time = scrapy.Field()
+    instructions = scrapy.Field()

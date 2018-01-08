@@ -35,6 +35,8 @@ class MysqlPipeline(object):
             self.tab = 'allrecipes'
         elif self.spider.name == 'eatingwell':
             self.tab = 'eatingwell'
+        elif self.spider.name == 'cookpad':
+            self.tab = 'cookpad'
         else:
             self.tab = 'test'
         # self.rc = StrictRedisCluster(startup_nodes=startup_nodes, decode_responses=True)
