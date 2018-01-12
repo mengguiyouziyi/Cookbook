@@ -83,7 +83,6 @@ class MysqlPipeline(object):
         return x
 
     def process_item(self, item, spider):
-        # print(item)
         sql = """insert into {tab} ({col}) VALUES ({val})""".format(tab=self.tab, col=self.col_str, val=self.val_str)
         args = [item[i] for i in self.col_list]
         try:
@@ -91,9 +90,6 @@ class MysqlPipeline(object):
             self.conn.commit()
             print(item['title'])
         except Exception as e:
-            # cnipr_comp = str(item['origin_id']) + '~' + str(item['only_id']) + '~' + str(
-            # 	item['comp_full_name']) + '~' + str(item['cursorPage'])
-            # self.rc.lpush('cnipr_fail', cnipr_comp)
             print(e)
             print('mysql error，链接为：{}'.format(item['url']))
             self.crawler.engine.close_spider(spider, 'mysql error')
